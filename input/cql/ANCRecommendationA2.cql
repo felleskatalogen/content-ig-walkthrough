@@ -64,6 +64,16 @@ define "Estimated Due Date":
     ).value
   )
 
+define function narrativeOfObservation(O FHIR.Observation):
+  if O.text is null then
+    ''
+  else
+    O.text.div
+
+define "Narratives of Observations":
+  [Observation] O
+    return narrativeOfObservation(O)
+
 define "Gestational Age in Weeks":
   weeks between ("Estimated Due Date" - 9 months - 7 days) and Today()
 
